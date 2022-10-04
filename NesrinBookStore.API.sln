@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NesrinBookStore.API", "NesrinBookStore.API\NesrinBookStore.API.csproj", "{67F3B75E-BFAD-443F-A0AD-65D2AED8810A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesrinBooks.API.DataAccess", "NesrinBooks.API.DataAccess\NesrinBooks.API.DataAccess.csproj", "{F7A2B668-6CA1-49AC-A23A-2A004A417370}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67F3B75E-BFAD-443F-A0AD-65D2AED8810A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F3B75E-BFAD-443F-A0AD-65D2AED8810A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F3B75E-BFAD-443F-A0AD-65D2AED8810A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F3B75E-BFAD-443F-A0AD-65D2AED8810A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A2B668-6CA1-49AC-A23A-2A004A417370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A2B668-6CA1-49AC-A23A-2A004A417370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A2B668-6CA1-49AC-A23A-2A004A417370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A2B668-6CA1-49AC-A23A-2A004A417370}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {363E9324-D9AE-4C7D-BE46-9467D3B27705}
+	EndGlobalSection
+EndGlobal
