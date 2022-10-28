@@ -1,8 +1,8 @@
 ﻿namespace NesrinBookStore.API.Models
 {
-    public class BooksModel
+    public class BookViewModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

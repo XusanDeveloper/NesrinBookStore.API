@@ -1,7 +1,6 @@
-﻿
-using NesrinBooks.API.DataAccess.Entities;
+﻿using NesrinBooks.API.DataAccess.Entities;
 
-namespace NesrinBooks.API.DataAccess
+namespace NesrinBookStore.Data.Contracts
 {
     public interface IBookRepository
     {

@@ -1,6 +1,6 @@
-﻿namespace NesrinStore.API.Services
+﻿namespace NesrinBookStore.Services.Interfaces
 {
-    public interface IGenericCRUDServices<T> where T : class
+    public interface IGenericServices<T> where T : class
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> Create(T book);

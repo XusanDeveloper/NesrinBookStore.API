@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NesrinBooks.API.DataAccess.Entities;
 using NesrinBookStore.API.Models;
-using NesrinStore.API.Services;
+using NesrinBookStore.Services.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,8 +11,8 @@ namespace NesrinBookStore.API.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly IGenericCRUDServices<BooksModel> _bookSvc;
-        public BookController(IGenericCRUDServices<BooksModel> bookSvc)
+        private readonly IGenericServices<BookViewModel> _bookSvc;
+        public BookController(IGenericServices<BookViewModel> bookSvc)
         {
             _bookSvc = bookSvc;                
         }
@@ -40,14 +39,14 @@ namespace NesrinBookStore.API.Controllers
         // POST api/<BookController>
         [HttpPost]
         [Authorize("huseyn")]
-        public async Task<IActionResult> Post([FromForm] BooksModel book)
+        public async Task<IActionResult> Post([FromForm] BookViewModel book)
         {
             return Ok( await _bookSvc.Create(book));
         }
 
         // PUT api/<BookController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromForm] BooksModel book)
+        public async Task<IActionResult> Put(int id, [FromForm] BookViewModel book)
         {
             var updatedBook =  await _bookSvc.Update(id, book);
             return Ok(updatedBook);

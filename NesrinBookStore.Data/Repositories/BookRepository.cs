@@ -1,17 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NesrinBooks.API.DataAccess.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NesrinBookStore.Data.Contexts;
+using NesrinBookStore.Data.Contracts;
 
-namespace NesrinBooks.API.DataAccess
+namespace NesrinBookStore.Data.Repositories
 {
     public class BookRepository : IBookRepository
     {
-        private readonly AppDbContext _dbContext;
-        public BookRepository(AppDbContext dbContext)
+        private readonly NesrinDbContext _dbContext;
+        public BookRepository(NesrinDbContext dbContext)
         {
             _dbContext = dbContext;
         }
