@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace NesrinBooks.API.DataAccess
 {
-    public class SqlServerBookRepository : IBookRepository
+    public class BookRepository : IBookRepository
     {
         private readonly AppDbContext _dbContext;
-        public SqlServerBookRepository(AppDbContext dbContext)
+        public BookRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }

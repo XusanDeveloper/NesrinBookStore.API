@@ -5,7 +5,13 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NesrinBookStore.API", "NesrinBookStore.API\NesrinBookStore.API.csproj", "{67F3B75E-BFAD-443F-A0AD-65D2AED8810A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesrinBooks.API.DataAccess", "NesrinBooks.API.DataAccess\NesrinBooks.API.DataAccess.csproj", "{F7A2B668-6CA1-49AC-A23A-2A004A417370}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesrinBookStore.Data", "NesrinBookStore.Data\NesrinBookStore.Data.csproj", "{61486FA9-5932-4E71-8B8B-C4CB2CB58B24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesrinBookStore.Services", "NesrinBookStore.Services\NesrinBookStore.Services.csproj", "{0827582E-B26C-47FE-A338-316CDD0BCC62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesrinBookStore.Domain", "NesrinBookStore.Domain\NesrinBookStore.Domain.csproj", "{2839F714-7231-4694-AD8C-EF2FCBDE1156}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesrinBookStore.ViewModels", "NesrinBookStore.ViewModels\NesrinBookStore.ViewModels.csproj", "{ABF32BC0-71B8-48CE-98AB-C414F48914A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +23,22 @@ Global
 		{67F3B75E-BFAD-443F-A0AD-65D2AED8810A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67F3B75E-BFAD-443F-A0AD-65D2AED8810A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67F3B75E-BFAD-443F-A0AD-65D2AED8810A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7A2B668-6CA1-49AC-A23A-2A004A417370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7A2B668-6CA1-49AC-A23A-2A004A417370}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7A2B668-6CA1-49AC-A23A-2A004A417370}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7A2B668-6CA1-49AC-A23A-2A004A417370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61486FA9-5932-4E71-8B8B-C4CB2CB58B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61486FA9-5932-4E71-8B8B-C4CB2CB58B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61486FA9-5932-4E71-8B8B-C4CB2CB58B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61486FA9-5932-4E71-8B8B-C4CB2CB58B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0827582E-B26C-47FE-A338-316CDD0BCC62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0827582E-B26C-47FE-A338-316CDD0BCC62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0827582E-B26C-47FE-A338-316CDD0BCC62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0827582E-B26C-47FE-A338-316CDD0BCC62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2839F714-7231-4694-AD8C-EF2FCBDE1156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2839F714-7231-4694-AD8C-EF2FCBDE1156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2839F714-7231-4694-AD8C-EF2FCBDE1156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2839F714-7231-4694-AD8C-EF2FCBDE1156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABF32BC0-71B8-48CE-98AB-C414F48914A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF32BC0-71B8-48CE-98AB-C414F48914A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABF32BC0-71B8-48CE-98AB-C414F48914A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABF32BC0-71B8-48CE-98AB-C414F48914A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
