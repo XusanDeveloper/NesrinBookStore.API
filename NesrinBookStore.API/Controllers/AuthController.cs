@@ -47,7 +47,7 @@ namespace NesrinBookStore.API.Controllers
             return Ok(new ResponseModel { Status = "Success", Message = "User created successfully" });
         }
 
-        [Route("register")]
+        [Route("login")]
         [HttpPost]
         public async Task<IActionResult> Register(LoginModel loginModel)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NesrinBooks.API.DataAccess.Entities;
 using NesrinBookStore.API.Models;
 using NesrinStore.API.Services;
@@ -38,6 +39,7 @@ namespace NesrinBookStore.API.Controllers
 
         // POST api/<BookController>
         [HttpPost]
+        [Authorize("huseyn")]
         public async Task<IActionResult> Post([FromForm] BooksModel book)
         {
             return Ok( await _bookSvc.Create(book));
