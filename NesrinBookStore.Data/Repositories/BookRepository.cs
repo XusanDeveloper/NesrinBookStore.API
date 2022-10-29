@@ -14,12 +14,7 @@ namespace NesrinBookStore.Data.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<Books> CreateBook(Books book)
-        {
-            await _dbContext.AddAsync(book);
-            await _dbContext.SaveChangesAsync();
-            return book;
-        }
+        public void CreateBook(Books book) => Create(book);
 
         public async Task<bool> DeleteBook(Guid id)
         {
@@ -33,18 +28,17 @@ namespace NesrinBookStore.Data.Repositories
             return false;
         }
 
-        public async Task<Books> GetBook(Guid id)
-        {
-            return await _dbContext.books.FindAsync(id);
-        }
+        public async Task<Books> GetBook(Guid id, bool trackChanges) =>
+            await FindByCondition(c => c.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Books>> GetBooks(bool trackChanges) =>
-            await FindAll(trackChanges).OrderBy(c => c.Name).ToListAsync();
+            await FindAll(trackChanges).ToListAsync();
 
 
         public async Task<Books> UpdateBook(Guid id, Books book)
         {
             var updatedBook = _dbContext.books.Attach(book);
+            
             updatedBook.State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
             return book;

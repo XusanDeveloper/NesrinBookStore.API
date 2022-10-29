@@ -6,25 +6,29 @@ using NesrinBookStore.Services.Interfaces;
 
 namespace NesrinBookStore.API.Services
 {
-    public class BookService : IGenericServices<BookViewModel>
+    public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
         private readonly IMapper mapper;
+        private readonly IRepositoryManager repositoryManager;
 
-        public BookService(IBookRepository bookRepository, IMapper mapper)
+        public BookService(IBookRepository bookRepository, IMapper mapper, IRepositoryManager repositoryManager)
         {
             _bookRepository = bookRepository;
             this.mapper = mapper;
+            this.repositoryManager = repositoryManager;
         }
 
         public async Task<BookViewModel> Create(BookViewModel model)
         {
             
-            var book = mapper.Map<Books>(model);
-            var createdBook = await _bookRepository.CreateBook(book);
-            
-            var result = mapper.Map<BookViewModel>(createdBook);
-            return result;
+            //var book = mapper.Map<Books>(model);
+
+            _bookRepository.CreateBook((Books)model);
+            await repositoryManager.SaveAsync();
+
+            //var result = mapper.Map<BookViewModel>(book);
+            return model;
         }
 
         public async Task<bool> Delete(Guid id)
@@ -34,7 +38,7 @@ namespace NesrinBookStore.API.Services
 
         public async Task<BookViewModel> Get(Guid id)
         {
-            var book = await _bookRepository.GetBook(id);
+            var book = await _bookRepository.GetBook(id, trackChanges: false);
             
             var model = mapper.Map<BookViewModel>(book);
             
@@ -45,8 +49,8 @@ namespace NesrinBookStore.API.Services
         {
             var books = await _bookRepository.GetBooks(trackChanges: false);
 
-            var domainResult = mapper.Map<IQueryable<BookViewModel>>(books);
-            
+            var domainResult = mapper.Map<List<BookViewModel>>(books);
+
             return domainResult;
         }
 

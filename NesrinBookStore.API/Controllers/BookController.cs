@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NesrinBooks.API.DataAccess.Entities;
 using NesrinBookStore.API.Models;
+using NesrinBookStore.Data.Contracts;
 using NesrinBookStore.Services.Interfaces;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace NesrinBookStore.API.Controllers
 {
@@ -11,42 +12,50 @@ namespace NesrinBookStore.API.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly IGenericServices<BookViewModel> _bookService;
-        public BookController(IGenericServices<BookViewModel> bookService)
+        private readonly IBookService _bookService;
+        private readonly IBookRepository bookRepository;
+        private readonly IMapper mapper;
+        private readonly IRepositoryManager repositoryManager;
+
+        public BookController(IBookService bookService, IBookRepository bookRepository, IMapper mapper, IRepositoryManager repositoryManager)
         {
-            _bookService = bookService;                
+            _bookService = bookService;
+            this.bookRepository = bookRepository;
+            this.mapper = mapper;
+            this.repositoryManager = repositoryManager;
         }
 
-        // GET: api/<BookController>
         [HttpGet]
-        public async  Task<IActionResult> Get()
+        public async Task<IActionResult> Get()
         {
             return Ok(await _bookService.GetAll());
         }
 
-        // GET api/<BookController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await _bookService.Get(id));
         }
 
-        // POST api/<BookController>
         [HttpPost]
         public async Task<IActionResult> Post([FromForm] BookViewModel book)
         {
             return Ok( await _bookService.Create(book));
         }
 
-        // PUT api/<BookController>/5
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, [FromForm] BookViewModel book)
         {
-            var updatedBook =  await _bookService.Update(id, book);
+            var updatedBook = await _bookService.Update(id, book);
             return Ok(updatedBook);
+
+            //var bookEntity = HttpContext.Items["books"] as Books;
+
+            //mapper.Map(book, bookEntity);
+            //await repositoryManager.SaveAsync();
+            //return NoContent();
         }
 
-        // DELETE api/<BookController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

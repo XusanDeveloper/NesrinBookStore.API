@@ -9,6 +9,7 @@ namespace NesrinBookStore.Services.Mappers
         public MappingProfile()
         {
             CreateMap<Books, BookViewModel>().ReverseMap();
+
             //var attachments = Mapper.Map<IEnumerable<Books>, List<BookViewModel>>(someList);
         }
     }
