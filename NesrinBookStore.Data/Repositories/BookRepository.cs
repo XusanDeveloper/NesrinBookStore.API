@@ -2,13 +2,15 @@
 using NesrinBooks.API.DataAccess.Entities;
 using NesrinBookStore.Data.Contexts;
 using NesrinBookStore.Data.Contracts;
+using Repository;
 
 namespace NesrinBookStore.Data.Repositories
 {
-    public class BookRepository : IBookRepository
+    public class BookRepository : RepositoryBase<Books>, IBookRepository
     {
         private readonly NesrinDbContext _dbContext;
         public BookRepository(NesrinDbContext dbContext)
+            : base(dbContext)
         {
             _dbContext = dbContext;
         }
@@ -19,7 +21,7 @@ namespace NesrinBookStore.Data.Repositories
             return book;
         }
 
-        public async Task<bool> DeleteBook(int id)
+        public async Task<bool> DeleteBook(Guid id)
         {
             var book = await _dbContext.books.FindAsync(id);
             if (book != null)
@@ -31,17 +33,16 @@ namespace NesrinBookStore.Data.Repositories
             return false;
         }
 
-        public async Task<Books> GetBook(int id)
+        public async Task<Books> GetBook(Guid id)
         {
             return await _dbContext.books.FindAsync(id);
         }
 
-        public async Task<IEnumerable<Books>> GetBooks()
-        {
-            return await _dbContext.books.ToListAsync();
-        }
+        public async Task<IEnumerable<Books>> GetBooks(bool trackChanges) =>
+            await FindAll(trackChanges).OrderBy(c => c.Name).ToListAsync();
 
-        public async Task<Books> UpdateBook(int id, Books book)
+
+        public async Task<Books> UpdateBook(Guid id, Books book)
         {
             var updatedBook = _dbContext.books.Attach(book);
             updatedBook.State = EntityState.Modified;

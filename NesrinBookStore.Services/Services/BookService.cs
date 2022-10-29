@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using NesrinBooks.API.DataAccess;
 using NesrinBooks.API.DataAccess.Entities;
 using NesrinBookStore.API.Models;
 using NesrinBookStore.Data.Contracts;
@@ -28,14 +27,15 @@ namespace NesrinBookStore.API.Services
             return result;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(Guid id)
         {
             return await _bookRepository.DeleteBook(id);
         }
 
-        public async Task<BookViewModel> Get(int id)
+        public async Task<BookViewModel> Get(Guid id)
         {
             var book = await _bookRepository.GetBook(id);
+            
             var model = mapper.Map<BookViewModel>(book);
             
             return model;
@@ -43,17 +43,18 @@ namespace NesrinBookStore.API.Services
 
         public async Task<IEnumerable<BookViewModel>> GetAll()
         {
-            var books = await _bookRepository.GetBooks();
+            var books = await _bookRepository.GetBooks(trackChanges: false);
 
-            var domainResult = mapper.Map<IEnumerable<BookViewModel>>(books);
+            var domainResult = mapper.Map<IQueryable<BookViewModel>>(books);
             
             return domainResult;
         }
 
-        public async Task<BookViewModel> Update(int id, BookViewModel model)
+        public async Task<BookViewModel> Update(Guid id, BookViewModel model)
         {
             
             var book = mapper.Map<Books>(model);
+
             var updatedBook = await _bookRepository.UpdateBook(id, book);
 
             var result = mapper.Map<BookViewModel>(updatedBook);
