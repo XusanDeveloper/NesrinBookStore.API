@@ -1,17 +1,22 @@
 using Microsoft.EntityFrameworkCore;
-using NesrinBookStore.API.Models;
+using NesrinBookStore.API.Extensions;
 using NesrinBookStore.API.Services;
 using NesrinBookStore.Data.Contexts;
 using NesrinBookStore.Data.Contracts;
 using NesrinBookStore.Data.Repositories;
 using NesrinBookStore.Services.Interfaces;
-using NesrinBookStore.Services.Mappers;
 using Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(config =>
+{
+    config.RespectBrowserAcceptHeader = true;
+    config.ReturnHttpNotAcceptable = true;
+}).AddXmlDataContractSerializerFormatters()
+  .AddCustomCSVFormatter();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
