@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NesrinBooks.API.DataAccess.Entities;
 using NesrinBookStore.API.Models;
 using NesrinBookStore.Data.Contracts;
+using NesrinBookStore.Services.ActionFilters;
 using NesrinBookStore.Services.Interfaces;
 
 
@@ -13,16 +14,12 @@ namespace NesrinBookStore.API.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookService _bookService;
-        private readonly IBookRepository bookRepository;
-        private readonly IMapper mapper;
-        private readonly IRepositoryManager repositoryManager;
+        private readonly ILoggerManager _logger;
 
-        public BookController(IBookService bookService, IBookRepository bookRepository, IMapper mapper, IRepositoryManager repositoryManager)
+        public BookController(IBookService bookService, ILoggerManager logger)
         {
             _bookService = bookService;
-            this.bookRepository = bookRepository;
-            this.mapper = mapper;
-            this.repositoryManager = repositoryManager;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -38,22 +35,23 @@ namespace NesrinBookStore.API.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Post([FromForm] BookViewModel book)
         {
             return Ok( await _bookService.Create(book));
         }
 
         [HttpPut("{id}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Put(Guid id, [FromForm] BookViewModel book)
         {
             var updatedBook = await _bookService.Update(id, book);
+            if (updatedBook == null)
+            {
+                _logger.LogInfo($"Book with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
             return Ok(updatedBook);
-
-            //var bookEntity = HttpContext.Items["books"] as Books;
-
-            //mapper.Map(book, bookEntity);
-            //await repositoryManager.SaveAsync();
-            //return NoContent();
         }
 
         [HttpDelete("{id}")]

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NesrinBookStore.Data.Contexts;
 
@@ -11,9 +12,10 @@ using NesrinBookStore.Data.Contexts;
 namespace NesrinBookStore.Data.Migrations
 {
     [DbContext(typeof(NesrinDbContext))]
-    partial class NesrinDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221031130912_Validation")]
+    partial class Validation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

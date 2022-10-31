@@ -4,6 +4,7 @@ using NesrinBookStore.API.Services;
 using NesrinBookStore.Data.Contexts;
 using NesrinBookStore.Data.Contracts;
 using NesrinBookStore.Data.Repositories;
+using NesrinBookStore.Services.ActionFilters;
 using NesrinBookStore.Services.Interfaces;
 using NLog;
 using Repository;
@@ -25,6 +26,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.ConfigureLoggerService();
 
+builder.Services.AddScoped<ValidationFilterAttribute>();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
