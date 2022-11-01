@@ -23,12 +23,10 @@ namespace NesrinBookStore.API.Services
         public async Task<BookViewModel> Create(BookViewModel model)
         {
             
-            //var book = mapper.Map<Books>(model);
 
             _bookRepository.CreateBook((Books)model);
             await repositoryManager.SaveAsync();
 
-            //var result = mapper.Map<BookViewModel>(book);
             return model;
         }
 
