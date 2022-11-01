@@ -1,5 +1,6 @@
 ﻿using NesrinBooks.API.DataAccess.Entities;
 using NesrinBookStore.API.Models;
+using NesrinBookStore.Domain.RequestFeatures;
 
 namespace NesrinBookStore.Services.Interfaces
 {

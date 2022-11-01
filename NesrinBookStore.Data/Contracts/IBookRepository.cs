@@ -1,4 +1,5 @@
 ﻿using NesrinBooks.API.DataAccess.Entities;
+using NesrinBookStore.Domain.RequestFeatures;
 
 namespace NesrinBookStore.Data.Contracts
 {

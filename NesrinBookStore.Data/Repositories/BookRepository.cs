@@ -2,6 +2,7 @@
 using NesrinBooks.API.DataAccess.Entities;
 using NesrinBookStore.Data.Contexts;
 using NesrinBookStore.Data.Contracts;
+using NesrinBookStore.Domain.RequestFeatures;
 using Repository;
 
 namespace NesrinBookStore.Data.Repositories
@@ -32,7 +33,8 @@ namespace NesrinBookStore.Data.Repositories
             await FindByCondition(c => c.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Books>> GetBooks(bool trackChanges) =>
-            await FindAll(trackChanges).ToListAsync();
+            await FindAll(trackChanges)
+            .ToListAsync();
 
 
         public async Task<Books> UpdateBook(Guid id, Books book)
