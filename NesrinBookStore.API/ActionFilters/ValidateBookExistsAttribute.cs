@@ -18,15 +18,16 @@ namespace NesrinBookStore.API.ActionFilters
         {
             var trackChanges = context.HttpContext.Request.Method.Equals("PUT");
             var id = (Guid)context.ActionArguments["id"];
+
             var book = await _repository.Book.GetBook(id, trackChanges);
             if (book == null)
             {
-                _logger.LogInfo($"Company with id: {id} doesn't exist in the database.");
+                _logger.LogInfo($"Book with id: {id} doesn't exist in the database.");
                 context.Result = new NotFoundResult();
             }
             else
             {
-                context.HttpContext.Items.Add("company", book);
+                context.HttpContext.Items.Add("book", book);
                 await next();
             }
         }

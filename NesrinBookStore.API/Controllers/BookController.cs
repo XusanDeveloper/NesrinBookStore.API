@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NesrinBooks.API.DataAccess.Entities;
+using NesrinBookStore.API.ActionFilters;
 using NesrinBookStore.API.Models;
 using NesrinBookStore.Data.Contracts;
 using NesrinBookStore.Services.ActionFilters;
@@ -43,7 +44,8 @@ namespace NesrinBookStore.API.Controllers
 
         [HttpPut("{id}")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> Put(Guid id, [FromForm] BookViewModel book)
+        [ServiceFilter(typeof(ValidateBookExistsAttribute))]
+        public async Task<IActionResult> Update(Guid id, [FromForm] BookViewModel book)
         {
             var updatedBook = await _bookService.Update(id, book);
             if (updatedBook == null)
@@ -55,12 +57,14 @@ namespace NesrinBookStore.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ServiceFilter(typeof(ValidateBookExistsAttribute))]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var deletedBook = await _bookService.Delete(id);
-            if (deletedBook)
-                return NoContent();
-            return NotFound();
+            var book = HttpContext.Items["book"] as Books;
+
+            await _bookService.Delete(id);
+            
+            return NoContent();
         }
     }
 }

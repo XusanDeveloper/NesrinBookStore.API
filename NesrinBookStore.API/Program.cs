@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NesrinBookStore.API.ActionFilters;
 using NesrinBookStore.API.Extensions;
 using NesrinBookStore.API.Services;
 using NesrinBookStore.Data.Contexts;
@@ -26,6 +27,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.ConfigureLoggerService();
 
+builder.Services.AddScoped<ValidateBookExistsAttribute>();
 builder.Services.AddScoped<ValidationFilterAttribute>();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IBookService, BookService>();
