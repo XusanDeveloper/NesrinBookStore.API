@@ -39,8 +39,10 @@ namespace NesrinBookStore.Data.Repositories
 
         public async Task<Books> UpdateBook(Guid id, Books book)
         {
+
             var updatedBook = _dbContext.books.Attach(book);
             
+
             updatedBook.State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
             return book;
